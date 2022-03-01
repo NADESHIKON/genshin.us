@@ -1,0 +1,42 @@
+{
+  "name": "genshin-scheduled",
+  "description": "compile JavaScript Cloud Functions with Babel",
+  "version": "1.0.0",
+  "main": "dist/function.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "xo",
+    "setup": "yarn firebase use --add",
+    "build": "babel src --out-dir dist --source-maps",
+    "watch": "yarn build --watch",
+    "serve": "yarn watch & yarn firebase serve --only functions",
+    "predeploy": "yarn build",
+    "deploy": "yarn firebase deploy --only functions",
+    "emulate": "yarn build & yarn firebase emulators:start --only functions"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "xo": {
+    "space": true
+  },
+  "devDependencies": {
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "firebase-functions-test": "latest",
+    "firebase-tools": "latest",
+    "xo": "^0.24.0"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "cheerio": "^1.0.0-rc.10",
+    "dayjs": "^1.10.4",
+    "express": "^4.17.1",
+    "firebase-admin": "latest",
+    "firebase-functions": "latest",
+    "jsdom": "^16.5.3",
+    "node-fetch": "^2.6.1",
+    "turndown": "^7.0.0"
+  }
+}

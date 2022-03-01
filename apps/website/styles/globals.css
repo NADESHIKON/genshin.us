@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-primary {
+        color: #FFF;
+    }
+
+    .quartiary {
+        background-color: #101113;
+    }
+
+    .tertiary {
+        background-color: #1A1B1E;
+    }
+
+    .secondary {
+        color: #888 !important;
+    }
+}
+
+ul > li:before {
+    content: "" !important;
+}

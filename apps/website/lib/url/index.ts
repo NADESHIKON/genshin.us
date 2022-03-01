@@ -1,0 +1,3 @@
+export const BASE_URL = typeof window !== "undefined" ? (window.location.protocol + "//" + window.location.hostname + (window.location.port.length > 0 ? (":" + window.location.port) : "")) : (process.env.VERCEL_ENV === "development" ? "http://localhost:3000" : process.env.VERCEL_ENV === "production" ? "https://genshin.us" : "https://dev.genshin.us");
+
+export const API_URL = typeof window !== "undefined" ? process.env.NEXT_PUBLIC_API_URL : process.env.API_URL;
