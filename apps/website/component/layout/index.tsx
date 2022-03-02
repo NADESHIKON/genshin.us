@@ -1,5 +1,6 @@
 import Header from '@/component/navigation/header';
 import NextNProgress from 'nextjs-progressbar';
+import Footer from "@/component/navigation/footer";
 
 export default function Layout({ children }) {
     return (
@@ -9,6 +10,7 @@ export default function Layout({ children }) {
             />
             <Header/>
             {children}
+            <Footer/>
         </>
     )
 }

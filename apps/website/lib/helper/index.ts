@@ -11,8 +11,25 @@ export const transformName = (name) => {
     return name;
 }
 
-const COLORS = {
-    ELECTRO: "#BE64FF"
+const ELEMENT_TO_HEX = {
+    ANEMO: "#4ffdb3",
+    PYRO: "#ff554d",
+    ELECTRO: "#BE64FF",
+    DENDRO: "#60bf18",
+    HYDRO: "#2471ff",
+    GEO: "#ffd064",
+    CRYO: "#8ff5fe",
+    ADAPTIVE: "#808080"
 }
 
-export const getHighlightColor = (element) => COLORS[element.toUpperCase()];
+export const getHighlightColor = (element) => ELEMENT_TO_HEX[element.toUpperCase()];
+
+const RESERVED = [
+    "DMG",
+    "ATK",
+    "DEF",
+    "HP",
+    "ATK%"
+]
+
+export const capitalize = (word) => word.split("_").map(w => w.charAt(0).toUpperCase() + (RESERVED.includes(w) ? w.slice(1) : w.slice(1).toLowerCase())).join(" ");

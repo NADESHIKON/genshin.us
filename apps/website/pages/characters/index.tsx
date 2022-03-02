@@ -14,7 +14,7 @@ export default function Characters(props) {
     const [characters, setCharacters] = useState(props.characters);
 
     useEffect(() => {
-        if (state.length > 0) setCharacters(props.characters.filter(element => element.name.toLowerCase().startsWith(state.toLowerCase())));
+        if (state.length > 0) setCharacters(props.characters.filter(element => element.name.toLowerCase().includes(state.toLowerCase())));
         else setCharacters(props.characters);
     }, [state]);
 
@@ -36,7 +36,7 @@ export default function Characters(props) {
                                                 <div className="z-10 absolute w-10 h-10 rounded-full p-1" style={{
                                                     backgroundColor: theme.palette.accents_1
                                                 }}>
-                                                    <img className="z-10 right-0 top-0" src={getImageLoader(`icons/elements/${character.element.substring(0, 1).toUpperCase() + character.element.substring(1).toLowerCase()}.png`)}/>
+                                                    <img className="z-10 left-0 top-0" src={getImageLoader(`icons/elements/${character.element.substring(0, 1).toUpperCase() + character.element.substring(1).toLowerCase()}.png`)}/>
                                                 </div>
                                                 <Image draggable={false} src={getImageLoader(character.thumbnail)}/>
                                             </div>
