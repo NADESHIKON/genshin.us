@@ -4,6 +4,8 @@ import { Image, Input, Table, Text, useInput, useTheme } from "@geist-ui/core";
 import Markdown from "@/component/markdown";
 import { capitalize, getHighlightColor, getImageLoader } from "@/lib/helper";
 import { useEffect, useState } from "react";
+import routes from "@/config/routes";
+import Head from "next/head";
 
 export default function Weapons(props) {
     const theme = useTheme();
@@ -32,6 +34,9 @@ export default function Weapons(props) {
 
     return (
         <>
+            <Head>
+                <title>{routes.weapons.label}</title>
+            </Head>
             <Input my={2} clearable width="100%" scale={4/3} placeholder="Type here to search for a weapon.." {...bindings}/>
             <Table data={weaponInformation}>
                 <Table.Column prop="thumbnail" label="Icon"/>
