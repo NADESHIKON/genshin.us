@@ -121,7 +121,6 @@ export default function Character(props) {
                         // @ts-ignore
                         const { artifactCombination, weaponCombination, title, description } = note;
 
-                        console.log(note)
                         return (
                             <>
                                 <Text h3>{title}</Text>

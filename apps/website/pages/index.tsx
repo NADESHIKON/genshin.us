@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import routes from '@/config/routes';
 import NextLink from 'next/link';
+import CharacterPreview from "@/component/container/character/character-preview";
 
 export default function Website(props) {
     dayjs.extend(relativeTime);
@@ -60,11 +61,11 @@ export default function Website(props) {
                     {dayjs(props.banners.character.time.from).format("MM/DD/YYYY")} - {dayjs(props.banners.character.time.to).format("MM/DD/YYYY")}
                 </Text>
             </Tooltip>
-            <BannerComponent src={character.information[0]}/>
+            <BannerComponent src={character.information[0]} character/>
             {character.information.length > 1 &&
                 <>
                     <Divider/>
-                    <BannerComponent src={character.information[1]}/>
+                    <BannerComponent src={character.information[1]} character/>
                 </>
             }
             <Divider/>
@@ -73,7 +74,7 @@ export default function Website(props) {
     );
 }
 
-const BannerComponent = ({ src }) => {
+const BannerComponent = ({ src, character = false }) => {
     return (
         <div className="my-5">
             <Image src={getImageLoader(src.image)}/>
@@ -81,13 +82,18 @@ const BannerComponent = ({ src }) => {
             <Grid.Container gap={1} justify="center">
                 {src.promotional.map(entry => {
                     return (<Grid xs={12} md={6}>
-                        <NextLink href={entry.link}>
-                            <Card hoverable className="cursor-pointer">
-                                <Card.Content>
-                                    <Image src={getImageLoader(entry.thumbnail)} draggable={false}/>
-                                </Card.Content>
-                            </Card>
-                        </NextLink>
+                        {character &&
+                            <CharacterPreview character={entry}/>
+                        }
+                        {!character &&
+                            <NextLink href={entry.link}>
+                                <Card hoverable className="cursor-pointer">
+                                    <Card.Content>
+                                        <Image src={getImageLoader(entry.thumbnail)} draggable={false}/>
+                                    </Card.Content>
+                                </Card>
+                            </NextLink>
+                        }
                     </Grid>)
                 })}
             </Grid.Container>
@@ -106,7 +112,7 @@ export async function getStaticProps({ params }) {
         let promotional = [];
 
         for (let promo of character.promotional) {
-            promotional.push(await (await fetch(`${API_URL}/character/${promo.toLowerCase().replace(/ /g, "-")}?basic=true`)).json());
+            promotional.push(await (await fetch(`${API_URL}/character/${promo.toLowerCase().replace(/ /g, "-")}`)).json());
         }
 
         character.promotional = promotional;

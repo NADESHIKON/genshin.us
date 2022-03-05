@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { GeistProvider, CssBaseline } from '@geist-ui/core';
+import { GeistProvider, CssBaseline, Themes } from '@geist-ui/core';
 
 const globalNavigationContext = {
     open: false,
@@ -9,6 +9,13 @@ const globalNavigationContext = {
 export const GlobalNavigationContext = createContext(
     globalNavigationContext
 )
+
+const theme = Themes.createFromDark({
+    type: "genshin",
+    palette: {
+        selection: "#ACCEF7"
+    }
+});
 
 export function Providers({ children }) {
     const initialState = {
@@ -25,7 +32,7 @@ export function Providers({ children }) {
     return (
         <>
             <GlobalNavigationContext.Provider value={state}>
-                <GeistProvider themeType="dark">
+                <GeistProvider themes={[theme]} themeType="genshin">
                     <CssBaseline/>
                         {children}
                 </GeistProvider>

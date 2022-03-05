@@ -1,6 +1,9 @@
 import routes from "@/config/routes";
 import Head from "next/head";
 import { API_URL } from "@/lib/url";
+import Markdown from "@/component/markdown";
+import { Card, Collapse, Text } from "@geist-ui/core";
+import dayjs from 'dayjs';
 
 export default function Changelog(props) {
     const { logs } = props;
@@ -10,17 +13,22 @@ export default function Changelog(props) {
             <Head>
                 <title>{routes.changelog.label}</title>
             </Head>
-            {logs.map(log => {
-                if (logs.indexOf(log) === 0) return (
-                    <>
-                        {log.title}
-                    </>
-                )
-
-                return <>
-                    {log.title}
-                </>
-            })}
+            <div className="flex flex-col space-y-5">
+                {logs.map(log => {
+                    return <div className="w-full">
+                        <Card key={log.uuid}>
+                            <Card.Content>
+                                <Collapse title={`${log.title}`} initialVisible={logs.indexOf(log) === 0}>
+                                    <Markdown text={log.description}/>
+                                </Collapse>
+                            </Card.Content>
+                            <Card.Footer>
+                                {dayjs(log.date).format("YYYY/MM/DD")}
+                            </Card.Footer>
+                        </Card>
+                    </div>
+                })}
+            </div>
         </>
     )
 }

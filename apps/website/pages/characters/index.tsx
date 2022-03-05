@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import routes from '@/config/routes';
 import NextLink from 'next/link';
+import CharacterPreview from "@/component/container/character/character-preview";
 
 export default function Characters(props) {
     const theme = useTheme();
@@ -29,25 +30,7 @@ export default function Characters(props) {
                     return (
                         <>
                             <Grid key={character.canonical} xs={12} sm={8} md={6} lg={4}>
-                                <NextLink href={character.link}>
-                                    <Card hoverable className="cursor-pointer">
-                                        <Card.Content>
-                                            <div>
-                                                <div className="z-10 absolute w-10 h-10 rounded-full p-1" style={{
-                                                    backgroundColor: theme.palette.accents_1
-                                                }}>
-                                                    <img className="z-10 left-0 top-0" src={getImageLoader(`icons/elements/${character.element.substring(0, 1).toUpperCase() + character.element.substring(1).toLowerCase()}.png`)}/>
-                                                </div>
-                                                <Image draggable={false} src={getImageLoader(character.thumbnail)}/>
-                                            </div>
-                                        </Card.Content>
-                                        <Card.Footer py={0} className="items-center content-center justify-center">
-                                            <Text className="text-center">
-                                                {transformName(character.name)}
-                                            </Text>
-                                        </Card.Footer>
-                                    </Card>
-                                </NextLink>
+                                <CharacterPreview character={character}/>
                             </Grid>
                         </>
                     )
