@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "pnpm run partytown && next build",
+    "start": "next start",
+    "partytown": "partytown copylib public/~partytown"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.4.2",
     "@geist-ui/core": "^2.3.4",
     "@geist-ui/icons": "^1.0.1",
     "@vercel/fetch": "^6.1.1",

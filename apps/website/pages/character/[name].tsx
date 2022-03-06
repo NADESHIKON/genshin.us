@@ -270,6 +270,12 @@ export default function Character(props) {
                     })}
                 </div>
             </div>
+            <style jsx>{`
+                   :global(.cell) {
+                        align-items: start !important;
+                        flex-flow: column wrap !important;
+                   }
+            `}</style>
         </>
     )
 }
