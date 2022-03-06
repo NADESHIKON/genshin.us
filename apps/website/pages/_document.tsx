@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { CssBaseline } from "@geist-ui/core";
+import { CssBaseline } from '@geist-ui/core';
 
 class GenshinDocument extends Document {
     static async getInitialProps(ctx) {

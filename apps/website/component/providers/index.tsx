@@ -32,7 +32,7 @@ export function Providers({ children }) {
     return (
         <>
             <GlobalNavigationContext.Provider value={state}>
-                <GeistProvider themes={[theme]} themeType="genshin">
+                <GeistProvider themeType="dark">
                     <CssBaseline/>
                         {children}
                 </GeistProvider>
