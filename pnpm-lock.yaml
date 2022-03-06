@@ -10,42 +10,7 @@ importers:
       prettier: 2.5.1
       turbo: 1.1.5
 
-  apps/scraper:
-    specifiers:
-      '@babel/cli': latest
-      '@babel/core': latest
-      '@babel/plugin-proposal-class-properties': ^7.13.0
-      '@babel/preset-env': latest
-      cheerio: ^1.0.0-rc.10
-      dayjs: ^1.10.4
-      express: ^4.17.1
-      firebase-admin: latest
-      firebase-functions: latest
-      firebase-functions-test: latest
-      firebase-tools: latest
-      jsdom: ^16.5.3
-      node-fetch: ^2.6.1
-      turndown: ^7.0.0
-      xo: ^0.24.0
-    dependencies:
-      '@babel/plugin-proposal-class-properties': 7.16.7_@babel+core@7.17.5
-      cheerio: 1.0.0-rc.10
-      dayjs: 1.10.7
-      express: 4.17.3
-      firebase-admin: 10.0.2
-      firebase-functions: 3.18.1_firebase-admin@10.0.2
-      jsdom: 16.7.0
-      node-fetch: 2.6.7
-      turndown: 7.1.1
-    devDependencies:
-      '@babel/cli': 7.17.6_@babel+core@7.17.5
-      '@babel/core': 7.17.5
-      '@babel/preset-env': 7.16.11_@babel+core@7.17.5
-      firebase-functions-test: 0.3.3_8b355d67acfe625e3802a684562baa83
-      firebase-tools: 10.2.1
-      xo: 0.24.0
-
-  apps/website:
+  apps/editor:
     specifiers:
       '@builder.io/partytown': ^0.4.2
       '@geist-ui/core': ^2.3.4
@@ -96,6 +61,102 @@ importers:
       '@types/react-dom': 17.0.11
       autoprefixer: 10.4.2_postcss@8.4.6
       eslint: 7.32.0
+      postcss: 8.4.6
+      tailwind-scrollbar: 1.3.1_autoprefixer@10.4.2
+      tailwindcss: 3.0.23_autoprefixer@10.4.2
+      tsconfig: link:../../packages/tsconfig
+      typescript: 4.5.5
+
+  apps/scraper:
+    specifiers:
+      '@babel/cli': latest
+      '@babel/core': latest
+      '@babel/plugin-proposal-class-properties': ^7.13.0
+      '@babel/preset-env': latest
+      cheerio: ^1.0.0-rc.10
+      dayjs: ^1.10.4
+      express: ^4.17.1
+      firebase-admin: latest
+      firebase-functions: latest
+      firebase-functions-test: latest
+      firebase-tools: latest
+      jsdom: ^16.5.3
+      node-fetch: ^2.6.1
+      turndown: ^7.0.0
+      xo: ^0.24.0
+    dependencies:
+      '@babel/plugin-proposal-class-properties': 7.16.7_@babel+core@7.17.5
+      cheerio: 1.0.0-rc.10
+      dayjs: 1.10.7
+      express: 4.17.3
+      firebase-admin: 10.0.2
+      firebase-functions: 3.18.1_firebase-admin@10.0.2
+      jsdom: 16.7.0
+      node-fetch: 2.6.7
+      turndown: 7.1.1
+    devDependencies:
+      '@babel/cli': 7.17.6_@babel+core@7.17.5
+      '@babel/core': 7.17.5
+      '@babel/preset-env': 7.16.11_@babel+core@7.17.5
+      firebase-functions-test: 0.3.3_8b355d67acfe625e3802a684562baa83
+      firebase-tools: 10.2.2
+      xo: 0.24.0
+
+  apps/website:
+    specifiers:
+      '@builder.io/partytown': ^0.4.2
+      '@geist-ui/core': ^2.3.4
+      '@geist-ui/icons': ^1.0.1
+      '@tailwindcss/typography': ^0.5.2
+      '@types/node': ^17.0.12
+      '@types/react': ^17.0.37
+      '@types/react-dom': ^17.0.11
+      '@vercel/fetch': ^6.1.1
+      autoprefixer: ^10.4.2
+      dayjs: ^1.10.4
+      embla-carousel-react: ^6.2.0
+      eslint: ^7.32.0
+      firebase-admin: ^10.0.2
+      isomorphic-fetch: ^3.0.0
+      next: ^12.1.0
+      next-seo: ^5.1.0
+      next-sitemap: ^2.5.4
+      nextjs-progressbar: ^0.0.14
+      postcss: ^8.4.6
+      react: 17.0.2
+      react-custom-scrollbars-2: ^4.4.0
+      react-dom: 17.0.2
+      react-markdown: ^8.0.0
+      react-virtualized: ^9.22.3
+      tailwind-scrollbar: ^1.3.1
+      tailwindcss: ^3.0.23
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@builder.io/partytown': 0.4.2
+      '@geist-ui/core': 2.3.4_react-dom@17.0.2+react@17.0.2
+      '@geist-ui/icons': 1.0.1_react@17.0.2
+      '@vercel/fetch': 6.1.1
+      dayjs: 1.10.7
+      embla-carousel-react: 6.2.0_react@17.0.2
+      firebase-admin: 10.0.2
+      isomorphic-fetch: 3.0.0
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      next-seo: 5.1.0_caa633a00319350dbda42996613fe26c
+      nextjs-progressbar: 0.0.14_next@12.1.0+react@17.0.2
+      react: 17.0.2
+      react-custom-scrollbars-2: 4.4.0_react-dom@17.0.2+react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-markdown: 8.0.0_a0c521d4794c7ad97f5f4c1c4a7d5818
+      react-virtualized: 9.22.3_react-dom@17.0.2+react@17.0.2
+    devDependencies:
+      '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
+      '@types/node': 17.0.18
+      '@types/react': 17.0.39
+      '@types/react-dom': 17.0.11
+      autoprefixer: 10.4.2_postcss@8.4.6
+      eslint: 7.32.0
+      next-sitemap: 2.5.4_next@12.1.0
       postcss: 8.4.6
       tailwind-scrollbar: 1.3.1_autoprefixer@10.4.2
       tailwindcss: 3.0.23_autoprefixer@10.4.2
@@ -1278,6 +1339,10 @@ packages:
   /@colors/colors/1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+    dev: true
+
+  /@corex/deepmerge/2.6.148:
+    resolution: {integrity: sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==}
     dev: true
 
   /@dabh/diagnostics/2.0.3:
@@ -5011,8 +5076,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /firebase-tools/10.2.1:
-    resolution: {integrity: sha512-MBAN5fMMiP8eUfh3pNXREOPzsjp6VpOLAWxD/h2+qLGqzmS3A1S/PQA+VCx46+ebkeo8oilNaVbNLAN/+yAbLw==}
+  /firebase-tools/10.2.2:
+    resolution: {integrity: sha512-KJ7C0HeZr01/uKSuU/pJ2ZUAm0OQvujkmdpKurkV4x/JQHh5MeZvCsPC+Zwn4uqTCaSpY1XZt3167c+jscgv7w==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
@@ -7597,6 +7662,30 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: true
 
+  /next-seo/5.1.0_caa633a00319350dbda42996613fe26c:
+    resolution: {integrity: sha512-ampuQfNTOi1x+xtRIb6CZGunIo6rQXtMo2Tyu861d5GjJFIwfOXsA4lzCa4+e2rLkyXDyVpavNNUZWa3US9ELw==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /next-sitemap/2.5.4_next@12.1.0:
+    resolution: {integrity: sha512-ftFqQQk74V+9+WkyAQLi98vaoLHisarP9VpsFTlAje3HOPzSQ33GrURDY8dRiguhFps4S4lQApXH5AgKByubvg==}
+    engines: {node: '>=14.18.3'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 2.6.148
+      minimist: 1.2.5
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+    dev: true
+
   /next-tick/1.0.0:
     resolution: {integrity: sha1-yobR/ogoFpsBICCOPchCS524NCw=}
     dev: true
@@ -8115,7 +8204,7 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.12.11
+      '@babel/code-frame': 7.16.7
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4

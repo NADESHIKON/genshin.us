@@ -6,6 +6,7 @@ import { capitalize, getHighlightColor, getImageLoader } from "@/lib/helper";
 import { useEffect, useState } from "react";
 import routes from "@/config/routes";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 export default function Weapons(props) {
     const theme = useTheme();
@@ -37,6 +38,9 @@ export default function Weapons(props) {
             <Head>
                 <title>{routes.weapons.label}</title>
             </Head>
+            <NextSeo
+                {...routes.weapons.seo}
+            />
             <Input my={2} clearable width="100%" scale={4/3} placeholder="Type here to search for a weapon.." {...bindings}/>
             <Table data={weaponInformation}>
                 <Table.Column prop="thumbnail" label="Icon"/>

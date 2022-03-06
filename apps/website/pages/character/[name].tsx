@@ -1,4 +1,5 @@
 import { API_URL } from '@/lib/url';
+import { NextSeo } from 'next-seo';
 import {
     Badge,
     Breadcrumbs,
@@ -23,6 +24,7 @@ import NextImage from 'next/image';
 import ArtifactNoteComponent from "@/component/note/artifact";
 import WeaponnoteComponent from "@/component/note/weapon";
 import { CheckInCircle } from "@geist-ui/icons";
+import { defaultSeo } from "@/config/seo";
 
 export default function Character(props) {
     const theme = useTheme();
@@ -53,6 +55,23 @@ export default function Character(props) {
     // @ts-ignore
     return (
         <>
+            <NextSeo
+                title={`${props.name}'s Information and Builds`}
+                description={`View ` + props.name + `'s information, talents, constellations, and suggested builds online`}
+                openGraph={{
+                    images: [{
+                        url: getImageLoader(props.thumbnail),
+                        alt: props.thumbnail
+                    }]
+                }}
+                additionalMetaTags={[
+                    ...defaultSeo.additionalMetaTags,
+                    {
+                        property: "theme-color",
+                        content: getHighlightColor(props.element) || "#1D1F20"
+                    }
+                ]}
+            />
             <Head>
                 <title>{props.name}'s Information and Builds</title>
             </Head>

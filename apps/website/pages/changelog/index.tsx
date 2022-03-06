@@ -4,6 +4,7 @@ import { API_URL } from "@/lib/url";
 import Markdown from "@/component/markdown";
 import { Card, Collapse, Text } from "@geist-ui/core";
 import dayjs from 'dayjs';
+import { NextSeo } from "next-seo";
 
 export default function Changelog(props) {
     const { logs } = props;
@@ -13,6 +14,9 @@ export default function Changelog(props) {
             <Head>
                 <title>{routes.changelog.label}</title>
             </Head>
+            <NextSeo
+                {...routes.changelog.seo}
+            />
             <div className="flex flex-col space-y-5">
                 {logs.map(log => {
                     return <div className="w-full">
