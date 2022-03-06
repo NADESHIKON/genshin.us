@@ -22,7 +22,7 @@ import { useState } from "react";
 import Markdown from '@/component/markdown';
 import NextImage from 'next/image';
 import ArtifactNoteComponent from "@/component/note/artifact";
-import WeaponnoteComponent from "@/component/note/weapon";
+import WeaponNoteComponent from "@/component/note/weapon";
 import { CheckInCircle } from "@geist-ui/icons";
 import { defaultSeo } from "@/config/seo";
 
@@ -151,7 +151,7 @@ export default function Character(props) {
                                 <div className="flex flex-row space-x-5 w-full">
                                     <div className="flex flex-col w-1/2">
                                         <Text>Weapons</Text>
-                                        {Object.values(weaponCombination).map(combination => {
+                                        {Object.values(weaponCombination).map((combination, index) => {
                                             // @ts-ignore
                                             const { weapons, tags, bis } = combination;
 
@@ -176,15 +176,15 @@ export default function Character(props) {
                                                             {weapons.map(weapon => {
                                                                 return (
                                                                     <>
-                                                                        <WeaponnoteComponent weapon={weapon}/>
-                                                                        {weapons.indexOf(weapon) < weapons.length - 1 &&
-                                                                            <Divider h={3} my={3}>OR</Divider>
-                                                                        }
+                                                                        <WeaponNoteComponent weapon={weapon}/>
                                                                     </>
                                                                 )
                                                             })}
                                                         </div>
                                                     </div>
+                                                    {index < Object.keys(weaponCombination).length - 1 &&
+                                                        <Divider h={3} my={3}>OR</Divider>
+                                                    }
                                                 </>
                                             )
                                         })}
