@@ -34,7 +34,7 @@ export function Providers({ children }) {
             <GlobalNavigationContext.Provider value={state}>
                 <GeistProvider themeType="dark">
                     <CssBaseline/>
-                        {children}
+                    {children}
                 </GeistProvider>
             </GlobalNavigationContext.Provider>
         </>

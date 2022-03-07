@@ -113,24 +113,6 @@ export default function Character(props) {
                     </div>
                 </div>
 
-                <div className="flex flex-col">
-                    <Text h2>Talent</Text>
-                    <Table data={talentInformation}>
-                        <Table.Column prop="image" label="Icon" width={36}/>
-                        <Table.Column prop="name" label="Name" width={50}/>
-                        <Table.Column prop="info" label="Description" width={700}/>
-                    </Table>
-                </div>
-
-                <div className="flex flex-col">
-                    <Text h2>Constellation</Text>
-                    <Table data={constellationInformation}>
-                        <Table.Column prop="image" label="Icon" width={36}/>
-                        <Table.Column prop="name" label="Name" width={50}/>
-                        <Table.Column prop="effect" label="Description" width={700}/>
-                    </Table>
-                </div>
-
                 <Text h2>Builds</Text>
                 <div className="flex flex-col">
                     {Object.values(props.notes).filter(note => {
@@ -287,6 +269,24 @@ export default function Character(props) {
                             </>
                         )
                     })}
+                </div>
+
+                <div className="flex flex-col">
+                    <Text h2>Talent</Text>
+                    <Table data={talentInformation}>
+                        <Table.Column prop="image" label="Icon" width={36}/>
+                        <Table.Column prop="name" label="Name" width={50}/>
+                        <Table.Column prop="info" label="Description" width={700}/>
+                    </Table>
+                </div>
+
+                <div className="flex flex-col">
+                    <Text h2>Constellation</Text>
+                    <Table data={constellationInformation}>
+                        <Table.Column prop="image" label="Icon" width={36}/>
+                        <Table.Column prop="name" label="Name" width={50}/>
+                        <Table.Column prop="effect" label="Description" width={700}/>
+                    </Table>
                 </div>
             </div>
             <style jsx>{`
