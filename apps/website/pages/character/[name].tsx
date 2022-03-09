@@ -23,7 +23,7 @@ import Markdown from '@/component/markdown';
 import NextImage from 'next/image';
 import ArtifactNoteComponent from "@/component/note/artifact";
 import WeaponNoteComponent from "@/component/note/weapon";
-import { CheckInCircle } from "@geist-ui/icons";
+import { CheckInCircle, InfoFill } from "@geist-ui/icons";
 import { defaultSeo } from "@/config/seo";
 
 export default function Character(props) {
@@ -116,6 +116,17 @@ export default function Character(props) {
                 <Text h2>Builds</Text>
                 <div className="flex flex-col">
                     {Object.values(props.notes).filter(note => {
+                            // @ts-ignore
+                            return !!note.artifactCombination && !!note.weaponCombination;
+                    }).length <= 0 &&
+                        <div className="flex flex-col items-center">
+                            <Text blockquote className="flex flex-row space-x-5">
+                                <InfoFill/>
+                                <span>No builds for this character yet.. It might come out in the future.</span>
+                            </Text>
+                        </div>
+                    }
+                    {Object.values(props.notes).filter(note => {
                         // @ts-ignore
                         return !!note.artifactCombination && !!note.weaponCombination;
                     }).map(note => {
@@ -130,8 +141,8 @@ export default function Character(props) {
                                         {description}
                                     </Text>
                                 </div>
-                                <div className="flex flex-row space-x-5 w-full">
-                                    <div className="flex flex-col w-1/2">
+                                <div className="flex flex-col md:flex-row md:space-x-5 w-full">
+                                    <div className="flex flex-col w-full md:w-1/2">
                                         <Text>Weapons</Text>
                                         {Object.values(weaponCombination).map((combination, index) => {
                                             // @ts-ignore
@@ -171,7 +182,7 @@ export default function Character(props) {
                                             )
                                         })}
                                     </div>
-                                    <div className="flex flex-col w-1/2">
+                                    <div className="flex flex-col w-full md:w-1/2">
                                         <Text>Artifacts</Text>
                                         {Object.values(artifactCombination).map(combination => {
                                             // @ts-ignore
