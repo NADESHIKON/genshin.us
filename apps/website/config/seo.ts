@@ -1,5 +1,7 @@
+const environment = process.env.NEXT_PUBLIC_ENVIRONMENT || process.env.ENVIRONMENT;
+
 export const baseUrl =
-    process.env.NODE_ENV === "production" ? "https://genshin.us" : "";
+    environment === "Production" ? "https://genshin.us" : environment === "Development" ? "https://dev.genshin.us" : "";
 
 export const defaultSeo = {
     title: "Genshin.US - User-Friendly Genshin Impact Fan Database",

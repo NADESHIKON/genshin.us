@@ -8,7 +8,64 @@ importers:
       turbo: latest
     devDependencies:
       prettier: 2.5.1
-      turbo: 1.1.4
+      turbo: 1.1.5
+
+  apps/editor:
+    specifiers:
+      '@builder.io/partytown': ^0.4.2
+      '@geist-ui/core': ^2.3.4
+      '@geist-ui/icons': ^1.0.1
+      '@tailwindcss/typography': ^0.5.2
+      '@types/node': ^17.0.12
+      '@types/react': ^17.0.37
+      '@types/react-dom': ^17.0.11
+      '@vercel/fetch': ^6.1.1
+      autoprefixer: ^10.4.2
+      dayjs: ^1.10.4
+      embla-carousel-react: ^6.2.0
+      eslint: ^7.32.0
+      firebase-admin: ^10.0.2
+      isomorphic-fetch: ^3.0.0
+      next: ^12.1.0
+      nextjs-progressbar: ^0.0.14
+      postcss: ^8.4.6
+      react: 17.0.2
+      react-custom-scrollbars-2: ^4.4.0
+      react-dom: 17.0.2
+      react-markdown: ^8.0.0
+      react-virtualized: ^9.22.3
+      tailwind-scrollbar: ^1.3.1
+      tailwindcss: ^3.0.23
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+    dependencies:
+      '@builder.io/partytown': 0.4.2
+      '@geist-ui/core': 2.3.4_react-dom@17.0.2+react@17.0.2
+      '@geist-ui/icons': 1.0.1_react@17.0.2
+      '@vercel/fetch': 6.1.1
+      dayjs: 1.10.7
+      embla-carousel-react: 6.2.0_react@17.0.2
+      firebase-admin: 10.0.2
+      isomorphic-fetch: 3.0.0
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      nextjs-progressbar: 0.0.14_next@12.1.0+react@17.0.2
+      react: 17.0.2
+      react-custom-scrollbars-2: 4.4.0_react-dom@17.0.2+react@17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-markdown: 8.0.0_a0c521d4794c7ad97f5f4c1c4a7d5818
+      react-virtualized: 9.22.3_react-dom@17.0.2+react@17.0.2
+    devDependencies:
+      '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
+      '@types/node': 17.0.18
+      '@types/react': 17.0.39
+      '@types/react-dom': 17.0.11
+      autoprefixer: 10.4.2_postcss@8.4.6
+      eslint: 7.32.0
+      postcss: 8.4.6
+      tailwind-scrollbar: 1.3.1_autoprefixer@10.4.2
+      tailwindcss: 3.0.23_autoprefixer@10.4.2
+      tsconfig: link:../../packages/tsconfig
+      typescript: 4.5.5
 
   apps/scraper:
     specifiers:
@@ -42,11 +99,12 @@ importers:
       '@babel/core': 7.17.5
       '@babel/preset-env': 7.16.11_@babel+core@7.17.5
       firebase-functions-test: 0.3.3_8b355d67acfe625e3802a684562baa83
-      firebase-tools: 10.2.1
+      firebase-tools: 10.2.2
       xo: 0.24.0
 
   apps/website:
     specifiers:
+      '@builder.io/partytown': ^0.4.2
       '@geist-ui/core': ^2.3.4
       '@geist-ui/icons': ^1.0.1
       '@tailwindcss/typography': ^0.5.2
@@ -61,6 +119,8 @@ importers:
       firebase-admin: ^10.0.2
       isomorphic-fetch: ^3.0.0
       next: ^12.1.0
+      next-seo: ^5.1.0
+      next-sitemap: ^2.5.4
       nextjs-progressbar: ^0.0.14
       postcss: ^8.4.6
       react: 17.0.2
@@ -68,11 +128,13 @@ importers:
       react-dom: 17.0.2
       react-markdown: ^8.0.0
       react-virtualized: ^9.22.3
+      styled-jsx: ^5.0.0
       tailwind-scrollbar: ^1.3.1
       tailwindcss: ^3.0.23
       tsconfig: workspace:*
       typescript: ^4.5.3
     dependencies:
+      '@builder.io/partytown': 0.4.2
       '@geist-ui/core': 2.3.4_react-dom@17.0.2+react@17.0.2
       '@geist-ui/icons': 1.0.1_react@17.0.2
       '@vercel/fetch': 6.1.1
@@ -81,12 +143,14 @@ importers:
       firebase-admin: 10.0.2
       isomorphic-fetch: 3.0.0
       next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      next-seo: 5.1.0_caa633a00319350dbda42996613fe26c
       nextjs-progressbar: 0.0.14_next@12.1.0+react@17.0.2
       react: 17.0.2
       react-custom-scrollbars-2: 4.4.0_react-dom@17.0.2+react@17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-markdown: 8.0.0_a0c521d4794c7ad97f5f4c1c4a7d5818
       react-virtualized: 9.22.3_react-dom@17.0.2+react@17.0.2
+      styled-jsx: 5.0.0_react@17.0.2
     devDependencies:
       '@tailwindcss/typography': 0.5.2_tailwindcss@3.0.23
       '@types/node': 17.0.18
@@ -94,6 +158,7 @@ importers:
       '@types/react-dom': 17.0.11
       autoprefixer: 10.4.2_postcss@8.4.6
       eslint: 7.32.0
+      next-sitemap: 2.5.4_next@12.1.0
       postcss: 8.4.6
       tailwind-scrollbar: 1.3.1_autoprefixer@10.4.2
       tailwindcss: 3.0.23_autoprefixer@10.4.2
@@ -1268,9 +1333,18 @@ packages:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
 
+  /@builder.io/partytown/0.4.2:
+    resolution: {integrity: sha512-rKf0IUFwLFS1ShI3UmUWxC4z5EY7kA2i3A9lbwjx+tugKfQ0uFyGWsMqufON523llgBPgtcK8UKMYkoQGrO+AA==}
+    hasBin: true
+    dev: false
+
   /@colors/colors/1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+    dev: true
+
+  /@corex/deepmerge/2.6.148:
+    resolution: {integrity: sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==}
     dev: true
 
   /@dabh/diagnostics/2.0.3:
@@ -5004,8 +5078,8 @@ packages:
       lodash: 4.17.21
     dev: false
 
-  /firebase-tools/10.2.1:
-    resolution: {integrity: sha512-MBAN5fMMiP8eUfh3pNXREOPzsjp6VpOLAWxD/h2+qLGqzmS3A1S/PQA+VCx46+ebkeo8oilNaVbNLAN/+yAbLw==}
+  /firebase-tools/10.2.2:
+    resolution: {integrity: sha512-KJ7C0HeZr01/uKSuU/pJ2ZUAm0OQvujkmdpKurkV4x/JQHh5MeZvCsPC+Zwn4uqTCaSpY1XZt3167c+jscgv7w==}
     engines: {node: '>= 12'}
     hasBin: true
     dependencies:
@@ -7590,6 +7664,30 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: true
 
+  /next-seo/5.1.0_caa633a00319350dbda42996613fe26c:
+    resolution: {integrity: sha512-ampuQfNTOi1x+xtRIb6CZGunIo6rQXtMo2Tyu861d5GjJFIwfOXsA4lzCa4+e2rLkyXDyVpavNNUZWa3US9ELw==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /next-sitemap/2.5.4_next@12.1.0:
+    resolution: {integrity: sha512-ftFqQQk74V+9+WkyAQLi98vaoLHisarP9VpsFTlAje3HOPzSQ33GrURDY8dRiguhFps4S4lQApXH5AgKByubvg==}
+    engines: {node: '>=14.18.3'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 2.6.148
+      minimist: 1.2.5
+      next: 12.1.0_react-dom@17.0.2+react@17.0.2
+    dev: true
+
   /next-tick/1.0.0:
     resolution: {integrity: sha1-yobR/ogoFpsBICCOPchCS524NCw=}
     dev: true
@@ -8108,7 +8206,7 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.12.11
+      '@babel/code-frame': 7.16.7
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -9962,119 +10060,119 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /turbo-darwin-64/1.1.4:
-    resolution: {integrity: sha512-X10dAxqCMXnDjyN4K5mSvhol42kfAcJhI9NS7neIMD25kLcULYFe96Qk1XWEBxgCEBAmkf7UrysYSP+dQMPlGw==}
+  /turbo-darwin-64/1.1.5:
+    resolution: {integrity: sha512-qdGMylQ408NmYhzuMmx+25W0iHFyFMRPO4579tDEv+WBiVDfAEYEzjajE4c+CQOLhd1aVEaPdSa+YhngQUgoDQ==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-darwin-arm64/1.1.4:
-    resolution: {integrity: sha512-sl5TiMLNqWKvKpQsh6lg2sUXRTVt5lfRqnStVw/E/5BTm/KIBZTNWHmx0hO8/LwDmXenVtpiW7h7BbWewfPqTQ==}
+  /turbo-darwin-arm64/1.1.5:
+    resolution: {integrity: sha512-mXU324d3vYzxRT9FSSkW9yG2BvFosd0f4DUvqy4qms8wzM6Yv9Aeo4zZTL86rF88UYGUkbiRaPQUeceb/QARVg==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-freebsd-64/1.1.4:
-    resolution: {integrity: sha512-EKrAzIyVgmeQf0NpAcxYrhFEiBTrjO163dpiiHxwRiRxTYtcWgY+RJiWVQyIeG0yPx1Z+aLXvmPqf6HvC0T3hg==}
+  /turbo-freebsd-64/1.1.5:
+    resolution: {integrity: sha512-qjjPTnZKOxw2x1Ito3yZAYDcwsCEg/5kYJwbPVvDn1jyXoxr3pUxTHUohroxQ6EmyxQ28qL7QpCVWDoQpDwrOQ==}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-freebsd-arm64/1.1.4:
-    resolution: {integrity: sha512-Vz3NSbc909eZU1DaS54vL1Z022OCG9wnrK7cB2e2ynMMdeYrIxAWnQeGVrYewQHYhwcCs7/6TgZCfhZKnG2nxQ==}
+  /turbo-freebsd-arm64/1.1.5:
+    resolution: {integrity: sha512-jYW+Th9Y6yEYevaFe7v3lFQoxyrpd8wX5KuuvqLazMRbNxvKgqTDmT7AbCOGJY5ejzqGnMlTGkQr8c3g3B8ndA==}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-32/1.1.4:
-    resolution: {integrity: sha512-sACZPPv0wDpoTu1qRuOP0CYZS6HY8naySg9fTBP4kcRF5dLC4xPQZA46g8AUMkRFoBsyqA08t2whwV8gvYFoUg==}
+  /turbo-linux-32/1.1.5:
+    resolution: {integrity: sha512-c5I8tdR1jD8L8pJWk+rlO734bpWI1gwGdvNOaA/IGZxzOfDSn4CGoUErnUPgOadT8azi7lT9UPQf/pLfEvjCOw==}
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-64/1.1.4:
-    resolution: {integrity: sha512-VTDSlTiF01P50JcyemWhGC1lx736gQMi3q6eLkGrt0t9HTtkl9FpQEypJDyRKZXTL+60ldriIwhivHmWm9cwQA==}
+  /turbo-linux-64/1.1.5:
+    resolution: {integrity: sha512-BZAxLfIkEtQa7u+VPYpdeVVJH6ab4WwXv4oCrUDaZf2BseDUxr57y2ASAWNFsg40T3oXXt4Kcbdc5LibjWQdtQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm/1.1.4:
-    resolution: {integrity: sha512-XDVX6rzRr7AgqQvA4VwPVAHWxxWFI8SgEsNtbXD4sKiEFo9fTWqMvtRJqhx86Z/XHtCJF8VuU3yPS5puItdc9A==}
+  /turbo-linux-arm/1.1.5:
+    resolution: {integrity: sha512-X6J05gQSWTc2c/TCkOQdFLhr35pUjEExY6K8yanYs2QKgd4GvDHmxYaBZ+6f90qcIUHYpe++adDPJcuAUv+8ug==}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-arm64/1.1.4:
-    resolution: {integrity: sha512-rMSjwzWg9W8J/JwIBtp0+e8O8MP6Z5U4htMgk88zalhSYhAxGIhOCIQT8KsaKoc71Ee/wG1soeprZvqBf/B84Q==}
+  /turbo-linux-arm64/1.1.5:
+    resolution: {integrity: sha512-8/yz5L0B6Jb0pNcvx/08LcPswizqggxQ0zlFEw+Oh9RAC+ZM5+X2YiMyKolvLCpkoRqrlKku0lmXH7mx6DWbig==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-mips64le/1.1.4:
-    resolution: {integrity: sha512-2VK+R9eUQU1xPJ+tGOsALQ6hsc8W7h9ohIumBYYs++SDazwaMQB7lsusXDasf6smEzD02KyUJuj0OvwzJjqq7Q==}
+  /turbo-linux-mips64le/1.1.5:
+    resolution: {integrity: sha512-K26bEFcLDGPkcaW7Eq4CMSxUbJf/x58aE92+0tONhrxXzamaBqTrSxPYlk/T8OoH7HxOvja2ctkpeI/NRAoIyw==}
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-linux-ppc64le/1.1.4:
-    resolution: {integrity: sha512-Ja9eiRxjioO1PV+TxRmTzsNvGGUQDdJnTLsG1YkKldkplecQdUfJRFdWksEZ7dZ+Hv44g4zvskJgUuCYlGckyA==}
+  /turbo-linux-ppc64le/1.1.5:
+    resolution: {integrity: sha512-fr1/5yf8fe1BJiW/6Y9lmV+kxZZC3u3xvSBC5AXDSl9u3aJFZl96CRE9tOJbTZMaOVGxhplKD+EiHbjIxUnTrA==}
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-32/1.1.4:
-    resolution: {integrity: sha512-c8l91hmpsFcmZQJBsDlhLAxfaBl83DXSmDOQoE7YT60vOZZSkfPlNSsHm9tq+4WN54unFfqpNbO7r6z+6R7rfw==}
+  /turbo-windows-32/1.1.5:
+    resolution: {integrity: sha512-K9LdIgQXJ7jL0aLJS0l2asJAH/vYBFP7qFzODiAcJ1EeKBjYqAVnIxFQrUN07lzNDtL9WK/aN5q0bJCDnhwTQw==}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo-windows-64/1.1.4:
-    resolution: {integrity: sha512-DMitFYd5eIhZ2CyPUeds3JXDB/onXBdA2DEj9cxVXY7q2ZBE4rpoV0Ft/mh15LsQZhwap9ipgddbCn16OGFvzw==}
+  /turbo-windows-64/1.1.5:
+    resolution: {integrity: sha512-c2Jkmw8yGZVz4opzEvB5HAf9XkA8CZBnorie46s44ec0FaNbcP9SCuUNvgAHxqDIHTGWC4A5PoPn0owkD3ss6A==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /turbo/1.1.4:
-    resolution: {integrity: sha512-kz08AV61hJeY9xuL4yQ27G2qks5LMAdvbd36GpcKvrh4Za+m0t+r2ijMjDvATp8uj4i6IlSV0t/G0/OMwkm6HA==}
+  /turbo/1.1.5:
+    resolution: {integrity: sha512-jXW8G4lr01/E/jS/66LYpEjwWFQAksC8TxR8gi3VGea7OeNj28l8zmXoY3IgT5H22MBnhmtOKV/GhsbPjI2Jrg==}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      turbo-darwin-64: 1.1.4
-      turbo-darwin-arm64: 1.1.4
-      turbo-freebsd-64: 1.1.4
-      turbo-freebsd-arm64: 1.1.4
-      turbo-linux-32: 1.1.4
-      turbo-linux-64: 1.1.4
-      turbo-linux-arm: 1.1.4
-      turbo-linux-arm64: 1.1.4
-      turbo-linux-mips64le: 1.1.4
-      turbo-linux-ppc64le: 1.1.4
-      turbo-windows-32: 1.1.4
-      turbo-windows-64: 1.1.4
+      turbo-darwin-64: 1.1.5
+      turbo-darwin-arm64: 1.1.5
+      turbo-freebsd-64: 1.1.5
+      turbo-freebsd-arm64: 1.1.5
+      turbo-linux-32: 1.1.5
+      turbo-linux-64: 1.1.5
+      turbo-linux-arm: 1.1.5
+      turbo-linux-arm64: 1.1.5
+      turbo-linux-mips64le: 1.1.5
+      turbo-linux-ppc64le: 1.1.5
+      turbo-windows-32: 1.1.5
+      turbo-windows-64: 1.1.5
     dev: true
 
   /turndown/7.1.1:

@@ -2,36 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import { GlobalNavigationContext } from '@/component/providers';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button, Tabs, useBodyScroll, useMediaQuery, useTheme } from '@geist-ui/core';
+import { Tabs, useTheme } from '@geist-ui/core';
 import routes from "@/config/routes";
-import MenuMobile from "@/component/navigation/mobile/menu-mobile";
-import { Menu as MenuIcon } from '@geist-ui/icons';
 
 export default function Menu(props) {
     const { open } = useContext(GlobalNavigationContext);
-
-    const [expanded, setExpanded] = useState(false);
     const theme = useTheme();
     const router = useRouter();
     const [sticky, setSticky] = useState(false);
-    const [, setBodyHidden] = useBodyScroll(null, { scrollLayer: true })
-    const isMobile = useMediaQuery('xs', { match: 'down' })
-
-    useEffect(() => {
-        setBodyHidden(expanded)
-    }, [expanded]);
 
     useEffect(() => {
         const scrollHandler = () => setSticky(document.documentElement.scrollTop > 54);
         document.addEventListener("scroll", scrollHandler);
         return () => document.removeEventListener("scroll", scrollHandler);
     }, [setSticky]);
-
-    useEffect(() => {
-        if (!isMobile) {
-            setExpanded(false)
-        }
-    }, [isMobile]);
 
     return (
         <>
@@ -48,21 +32,6 @@ export default function Menu(props) {
                             })}
                         </Tabs>
                     </div>
-                    <div className="controls">
-                        {isMobile ? (
-                            <Button
-                                className="menu-toggle"
-                                auto
-                                type="abort"
-                                onClick={() => setExpanded(!expanded)}>
-                                <MenuIcon size="1.125rem" />
-                            </Button>
-                        ) : (
-                            null
-                        )}
-                    </div>
-                    <MenuMobile expanded={expanded}/>
-
                 </div>
             </nav>
             <style jsx>{`
@@ -123,27 +92,6 @@ export default function Menu(props) {
                 }
                 .menu-inner :global(.active) {
                     color: ${theme.palette.foreground};
-                }
-                
-                @media only screen and (max-width: ${theme.breakpoints.xs.max}) {
-                    .menu-inner {
-                        display: none;
-                    }
-                }
-                
-                .controls {
-                    flex: 1 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                }
-                
-                .controls :global(.menu-toggle) {
-                    display: flex;
-                    align-items: center;
-                    min-width: 40px;
-                    height: 40px;
-                    padding: 0;
                 }
             `}</style>
         </>

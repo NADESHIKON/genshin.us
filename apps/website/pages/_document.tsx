@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { CssBaseline } from "@geist-ui/core";
+import { CssBaseline } from '@geist-ui/core';
 
 class GenshinDocument extends Document {
     static async getInitialProps(ctx) {
@@ -20,7 +20,25 @@ class GenshinDocument extends Document {
     render() {
         return (
             <Html>
-                <Head />
+                <Head>
+                    <script
+                        async
+                        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+                        type="text/partytown"
+                    />
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+                        }}
+                    />
+                </Head>
                 <body>
                     <Main />
                     <NextScript />

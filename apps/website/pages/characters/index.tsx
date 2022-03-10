@@ -7,6 +7,7 @@ import Head from 'next/head';
 import routes from '@/config/routes';
 import NextLink from 'next/link';
 import CharacterPreview from "@/component/container/character/character-preview";
+import { NextSeo } from "next-seo";
 
 export default function Characters(props) {
     const theme = useTheme();
@@ -24,6 +25,9 @@ export default function Characters(props) {
             <Head>
                 <title>{routes.characters.label}</title>
             </Head>
+            <NextSeo
+                {...routes.characters.seo}
+            />
             <Input my={2} clearable width="100%" scale={4/3} placeholder="Type here to search for a character.." {...bindings}/>
             <Grid.Container gap={2} justify="center">
                 {characters.map(character => {

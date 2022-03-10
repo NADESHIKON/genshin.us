@@ -12,7 +12,7 @@ export default function Header(props) {
         <>
             <nav className="flex select-none items-center space-between my-0 mx-auto max-w-full" style={{ height: "54px", width: theme.layout.pageWidthWithMargin, padding: theme.layout.pageMargin }}>
                 <div>
-                    <Text h1 mb={0} pt={2} className="font-medium text-base">GENSHIN.US</Text>
+                    <Text h1 mb={0} className="font-medium text-base">GENSHIN.US</Text>
                     <Text p small mt={0} className="secondary">{defaultSeo.description}</Text>
                 </div>
             </nav>

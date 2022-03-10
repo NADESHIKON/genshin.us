@@ -3,7 +3,7 @@ import NextImage from 'next/image';
 import { getImageLoader } from '@/lib/helper';
 import Markdown from '@/component/markdown';
 
-export default function WeaponnoteComponent({ weapon }) {
+export default function WeaponNoteComponent({ weapon }) {
     const theme = useTheme();
 
     return (

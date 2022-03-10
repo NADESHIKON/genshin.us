@@ -1,4 +1,5 @@
 import { API_URL } from '@/lib/url';
+import { NextSeo } from 'next-seo';
 import {
     Badge,
     Breadcrumbs,
@@ -21,8 +22,9 @@ import { useState } from "react";
 import Markdown from '@/component/markdown';
 import NextImage from 'next/image';
 import ArtifactNoteComponent from "@/component/note/artifact";
-import WeaponnoteComponent from "@/component/note/weapon";
-import { CheckInCircle } from "@geist-ui/icons";
+import WeaponNoteComponent from "@/component/note/weapon";
+import { CheckInCircle, InfoFill } from "@geist-ui/icons";
+import { defaultSeo } from "@/config/seo";
 
 export default function Character(props) {
     const theme = useTheme();
@@ -53,6 +55,23 @@ export default function Character(props) {
     // @ts-ignore
     return (
         <>
+            <NextSeo
+                title={`${props.name}'s Information and Builds`}
+                description={`View ` + props.name + `'s information, talents, constellations, and suggested builds online`}
+                openGraph={{
+                    images: [{
+                        url: getImageLoader(props.thumbnail),
+                        alt: props.thumbnail
+                    }]
+                }}
+                additionalMetaTags={[
+                    ...defaultSeo.additionalMetaTags,
+                    {
+                        property: "theme-color",
+                        content: getHighlightColor(props.element) || "#1D1F20"
+                    }
+                ]}
+            />
             <Head>
                 <title>{props.name}'s Information and Builds</title>
             </Head>
@@ -94,26 +113,19 @@ export default function Character(props) {
                     </div>
                 </div>
 
-                <div className="flex flex-col">
-                    <Text h2>Talent</Text>
-                    <Table data={talentInformation}>
-                        <Table.Column prop="image" label="Icon" width={36}/>
-                        <Table.Column prop="name" label="Name" width={50}/>
-                        <Table.Column prop="info" label="Description" width={700}/>
-                    </Table>
-                </div>
-
-                <div className="flex flex-col">
-                    <Text h2>Constellation</Text>
-                    <Table data={constellationInformation}>
-                        <Table.Column prop="image" label="Icon" width={36}/>
-                        <Table.Column prop="name" label="Name" width={50}/>
-                        <Table.Column prop="effect" label="Description" width={700}/>
-                    </Table>
-                </div>
-
                 <Text h2>Builds</Text>
                 <div className="flex flex-col">
+                    {Object.values(props.notes).filter(note => {
+                            // @ts-ignore
+                            return !!note.artifactCombination && !!note.weaponCombination;
+                    }).length <= 0 &&
+                        <div className="flex flex-col items-center">
+                            <Text blockquote className="flex flex-row space-x-5">
+                                <InfoFill/>
+                                <span>No builds for this character yet.. It might come out in the future.</span>
+                            </Text>
+                        </div>
+                    }
                     {Object.values(props.notes).filter(note => {
                         // @ts-ignore
                         return !!note.artifactCombination && !!note.weaponCombination;
@@ -129,10 +141,10 @@ export default function Character(props) {
                                         {description}
                                     </Text>
                                 </div>
-                                <div className="flex flex-row space-x-5 w-full">
-                                    <div className="flex flex-col w-1/2">
+                                <div className="flex flex-col md:flex-row md:space-x-5 w-full">
+                                    <div className="flex flex-col w-full md:w-1/2">
                                         <Text>Weapons</Text>
-                                        {Object.values(weaponCombination).map(combination => {
+                                        {Object.values(weaponCombination).map((combination, index) => {
                                             // @ts-ignore
                                             const { weapons, tags, bis } = combination;
 
@@ -157,20 +169,20 @@ export default function Character(props) {
                                                             {weapons.map(weapon => {
                                                                 return (
                                                                     <>
-                                                                        <WeaponnoteComponent weapon={weapon}/>
-                                                                        {weapons.indexOf(weapon) < weapons.length - 1 &&
-                                                                            <Divider h={3} my={3}>OR</Divider>
-                                                                        }
+                                                                        <WeaponNoteComponent weapon={weapon}/>
                                                                     </>
                                                                 )
                                                             })}
                                                         </div>
                                                     </div>
+                                                    {index < Object.keys(weaponCombination).length - 1 &&
+                                                        <Divider h={3} my={3}>OR</Divider>
+                                                    }
                                                 </>
                                             )
                                         })}
                                     </div>
-                                    <div className="flex flex-col w-1/2">
+                                    <div className="flex flex-col w-full md:w-1/2">
                                         <Text>Artifacts</Text>
                                         {Object.values(artifactCombination).map(combination => {
                                             // @ts-ignore
@@ -269,7 +281,31 @@ export default function Character(props) {
                         )
                     })}
                 </div>
+
+                <div className="flex flex-col">
+                    <Text h2>Talent</Text>
+                    <Table data={talentInformation}>
+                        <Table.Column prop="image" label="Icon" width={36}/>
+                        <Table.Column prop="name" label="Name" width={50}/>
+                        <Table.Column prop="info" label="Description" width={700}/>
+                    </Table>
+                </div>
+
+                <div className="flex flex-col">
+                    <Text h2>Constellation</Text>
+                    <Table data={constellationInformation}>
+                        <Table.Column prop="image" label="Icon" width={36}/>
+                        <Table.Column prop="name" label="Name" width={50}/>
+                        <Table.Column prop="effect" label="Description" width={700}/>
+                    </Table>
+                </div>
             </div>
+            <style jsx>{`
+                   :global(.cell) {
+                        align-items: start !important;
+                        flex-flow: column wrap !important;
+                   }
+            `}</style>
         </>
     )
 }
