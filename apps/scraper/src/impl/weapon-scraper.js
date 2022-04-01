@@ -70,17 +70,18 @@ export default class WeaponScraper extends Scraper {
                 }
             }
 
-            const attributeElement = $($($(".pi-smart-group-body, .pi-border-color")[0]).children(".pi-smart-data-value, .pi-data-value, .pi-font, .pi-item-spacing, .pi-border-color")[3]).find(".pi-smart-data-label, .pi-data-label, .pi-secondary-font, .pi-item-spacing, .pi-border-color");
+            const attributeElement = $($($(".portable-infobox").children()[3]).children()[1]).find(".pi-data-value");
 
-            let attributeTypeString = $(attributeElement.length === 7 ? attributeElement[5] : attributeElement[6]).text().split(" - ");
-            let attributeValueString = attributeElement[8] ? $(attributeElement[8]).text().split(" - ") : "";
+            let baseAtkTypeString = attributeElement.length === 3 ? $(attributeElement[0]).text().split(" - ") : "";
+            let attributeTypeString = attributeElement[1];
+            let attributeValueString = attributeElement.length === 3 ? $(attributeElement[2]).text().split(" - ") : "";
 
             const attribute = {
                 atk: {
-                    from: Number.parseInt(attributeTypeString[0]),
-                    to: Number.parseInt(attributeTypeString[1])
+                    from: Number.parseInt(baseAtkTypeString[0]),
+                    to: Number.parseInt(baseAtkTypeString[1])
                 },
-                type: attributeElement.length === 5 ? 'UNKNOWN' : attributeElement.length === 7 ? 'NONE' : $(attributeElement[7]).text().replace(/[\d.-]/g, "").replace("\n", "").replace(/ /g, "_").toUpperCase()
+                type: attributeElement.length !== 3 ? 'NONE' : $(attributeTypeString).text().replace(/[\d.-]/g, "").replace("\n", "").replace(/ /g, "_").toUpperCase()
             };
 
             if (attribute.type === 'UNKNOWN') return;
