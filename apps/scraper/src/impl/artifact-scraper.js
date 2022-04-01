@@ -65,7 +65,7 @@ export default class ArtifactScraper extends Scraper {
 
             if (pieceCount === 5) {
                 for (let i = 0; i < 10; i += 2) {
-                    let thumbnail = $(informationTable[i]).find('a').first().attr('href');
+                    let thumbnail = $(informationTable[i]).find('img').first().attr('src');
                     let piece = $(informationTable[i + 1]);
 
                     let pieceType = MAPPING_PIECE_TYPE[piece.find('b').first().text().trim()];
