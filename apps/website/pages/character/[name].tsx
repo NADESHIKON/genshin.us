@@ -49,10 +49,6 @@ export default function Character(props) {
         }
     });
 
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
         <>
             <NextSeo
@@ -300,6 +296,7 @@ export default function Character(props) {
                     </Table>
                 </div>
             </div>
+            { /* @ts-ignore */ }
             <style jsx>{`
                    :global(.cell) {
                         align-items: start !important;
@@ -311,7 +308,7 @@ export default function Character(props) {
 }
 
 export async function getStaticPaths() {
-    let response = await (await fetch(`${API_URL}/character/list`)).json();
+    let response = await (await fetch(`${API_URL}/characters`)).json();
 
     response = response.filter(element => element.canonical !== "traveler");
 

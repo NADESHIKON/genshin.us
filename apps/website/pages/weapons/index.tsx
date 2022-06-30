@@ -54,7 +54,7 @@ export default function Weapons(props) {
 }
 
 export async function getStaticProps({ params }) {
-    let response = await (await fetch(`${API_URL}/weapon/list`)).json();
+    let response = await (await fetch(`${API_URL}/weapons`)).json();
 
     return {
         props: {

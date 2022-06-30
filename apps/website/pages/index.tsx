@@ -101,7 +101,7 @@ const BannerComponent = ({ src, character = false }) => {
     )
 }
 export async function getStaticProps({ params }) {
-    const response = await (await fetch(`${API_URL}/banner`)).json();
+    const response = await (await fetch(`${API_URL}/banners`)).json();
 
     // @ts-ignore
     let characters = response.character.information;

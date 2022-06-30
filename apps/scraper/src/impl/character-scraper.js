@@ -25,6 +25,11 @@ export default class CharacterScraper extends Scraper {
         const response = await (await fetch(CHARACTER_URL)).text();
         const $ = cheerio.load(response);
 
+        $.root()
+            .find(".mw-collapsible")
+            .contents()
+            .remove();
+
         return Array.from($($(".article-table, .sortable")[0]).find("tr")).map(e => $(e).find("td")[0]).filter(e => e !== undefined).map(e => {
             const image = $(e).find("img").first();
             const linkElement = $(e).find("a").first();
@@ -138,10 +143,10 @@ export default class CharacterScraper extends Scraper {
             let unalignedTotalCost = $(totalCost[totalCost.length - 1]);
             talent_materials['unaligned'] = this.parseTalentMaterials($, unalignedTotalCost);
         } else {
-            talentsElement = $($($(".talent_table")[0]).find("tbody")[0]).children("tr");
+            talentsElement = $($($($("#Talents")[0]).parent().next()).children().children());
             talents = this.parseTalents($, talentsElement);
 
-            constellationsElement = $($(".tdc1")[0]).find("tr");
+            constellationsElement = $($($("#Constellation")[0]).parent().next()).find("tr");
             constellations = this.parseConstellations($, constellationsElement);
 
             let totalCost = $("b:contains(Total Cost)").last().parent();
@@ -232,33 +237,38 @@ export default class CharacterScraper extends Scraper {
             })
         }
 
+        console.log(talents)
         return talents;
     }
 
     parseConstellations($, constellationsElement) {
         const constellations = {};
 
-        for (let i = 1; i < constellationsElement.length; i++) {
-            const main = $(constellationsElement[i]);
-            const name = $(main.find("td")[2]).text().replace(/[\n\r]/g, "").replace(/\(.*\)/g, "").trimEnd();
+        let index = 1;
 
-            let iconElement = $(main.find("td")[1]).find("img").first();
+        for (let i = 1; i < constellationsElement.length; i += 2) {
+            const main = $(constellationsElement[i]);
+            const name = $(main.find("td")[1]).text().replace(/[\n\r]/g, "").replace(/\(.*\)/g, "").trimEnd();
+
+            let iconElement = $(main.find("td")[0]).find("img").first();
             let icon = iconElement.attr("data-src");
             if (!icon || icon.length <= 0) icon = iconElement.attr("src");
 
             // icon = icon.dataset ? icon.dataset.src : icon.src;
 
-            let effect = turndown.turndown($(main.find("td")[3]).html().replace(/<a[^>]*>/g,"<b>").replace(/<\/a>/g,"</b>").replace(/<\/?(?!b)(?!li)(?!ul)\w*\b[^>]*>/ig, "")).replace(/\n\n\n/g, "\n");
+            let effect = turndown.turndown($(constellationsElement[i + 1]).html().replace(/<a[^>]*>/g,"<b>").replace(/<\/a>/g,"</b>").replace(/<\/?(?!b)(?!li)(?!ul)\w*\b[^>]*>/ig, "")).replace(/\n\n\n/g, "\n");
 
             for (const reservedWord of reserved) {
                 effect = effect.replace(new RegExp(`[*][*]${reservedWord}[*][*]`, "ig"), reservedWord);
             }
 
-            constellations["c" + i] = {
-                image: this.transformRawUrl(icon),
+            constellations["c" + index] = {
+                image: icon,
                 effect: effect,
                 name: name,
             }
+
+            index++;
         }
 
         return constellations;
@@ -266,6 +276,7 @@ export default class CharacterScraper extends Scraper {
 
     async loadToDatabase(data, ignoreCharacterExistence = false) {
         const { multiple_elements } = data;
+        if (multiple_elements) return; // Don't track for traveler now..
 
         const slug = data.name.toLowerCase().replace(/ /g, "-");
         const character = database.collection("characters").doc(slug);
@@ -287,12 +298,16 @@ export default class CharacterScraper extends Scraper {
                 let talentDocument = database.collection("talents").doc(slug + "-" + element);
 
                 talents = await Promise.all(data.talents[element].map(async talent => {
-                    const talentFileName = decodeURIComponent(Scraper.EXTERNAL_FILE_REGEX.exec(talent.image).groups.filename.replace("Talent_", ""));
+                    try {
+                        const talentFileName = decodeURIComponent(Scraper.EXTERNAL_FILE_REGEX.exec(talent.image).groups.filename.replace("Talent_", ""));
 
-                    await this.saveImageToStorage(talent.image, `icons/talents/${talentFileName}`);
-                    return {
-                        ...talent,
-                        image: `icons/talents/${talentFileName}`
+                        await this.saveImageToStorage(talent.image, `icons/talents/${talentFileName}`);
+                        return {
+                            ...talent,
+                            image: `icons/talents/${talentFileName}`
+                        }
+                    } catch (e) {
+                        console.error("Error occurred while trying to process talent", talent)
                     }
                 }));
 
