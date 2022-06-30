@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "pnpm run partytown && next build",
     "start": "next start",
-    "vercel-build": "pnpm run build && next-sitemap",
+    "vercel-build": "npm run build && next-sitemap",
     "partytown": "partytown copylib public/~partytown"
   },
   "dependencies": {
