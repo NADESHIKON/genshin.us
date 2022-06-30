@@ -4,5 +4,8 @@ module.exports = {
         domains: ['asset.genshin.us', 'assets.genshin.us'],
         loader: 'custom',
         path: 'https://asset.genshin.us/'
+    },
+    experimental: {
+        nftTracing: true
     }
 }
