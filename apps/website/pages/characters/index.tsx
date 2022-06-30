@@ -45,7 +45,7 @@ export default function Characters(props) {
 }
 
 export async function getStaticProps({ params }) {
-    let response = await (await fetch(`${API_URL}/characters`)).json();
+    let response = await (await fetch(`${API_URL}/character/list`)).json();
 
     const baseTraveler = response.find(element => element.canonical === "traveler");
 

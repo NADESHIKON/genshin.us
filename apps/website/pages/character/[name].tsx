@@ -308,7 +308,7 @@ export default function Character(props) {
 }
 
 export async function getStaticPaths() {
-    let response = await (await fetch(`${API_URL}/characters`)).json();
+    let response = await (await fetch(`${API_URL}/character/list`)).json();
 
     response = response.filter(element => element.canonical !== "traveler");
 
